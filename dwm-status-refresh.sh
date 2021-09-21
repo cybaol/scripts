@@ -71,7 +71,8 @@ get_time_until_charged() {
 	seconds=$(bc <<< "scale = 10; ($sum_remaining_charge / $present_rate) * 3600");
 
 	# prettifies the seconds into h:mm:ss format
-	pretty_time=$(date -u -d @${seconds} +%T);
+	# pretty_time=$(date -u -d @${seconds} +%T);
+	pretty_time=$(date -u $seconds +%T);
 
 	echo $pretty_time;
 }
@@ -116,11 +117,11 @@ print_bat(){
 		#echo -e "${charge}"
 	#fi
 	#echo "$(get_battery_charging_status) $(get_battery_combined_percent)%, $(get_time_until_charged )";
-	echo "$(get_battery_charging_status) $(get_battery_combined_percent)%, $(get_time_until_charged )";
+	echo "$(get_battery_charging_status) $(get_battery_combined_percent)%";
 }
 
 print_date(){
-	date '+%Y年%m月%d日 %H:%M'
+	date '+%Y年%m月%d日 %A %H:%M'
 }
 
 show_record(){
